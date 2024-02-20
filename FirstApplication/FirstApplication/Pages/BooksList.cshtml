@@ -1,0 +1,24 @@
+﻿@page
+@model FirstApplication.Pages.BooksListModel
+@{
+	var urlToLoadHtml = Url.Page("", "LoadBooks");
+}
+
+<h1>Mes livres</h1>
+
+<div>
+	<h2>Recherche</h2>
+	<input type="text" name="query"
+		   hx-get="@urlToLoadHtml"
+		   hx-trigger="keyup delay:500ms changed"
+		   hx-target="#results"
+		   placeholder="Search...">
+</div>
+
+<div id="results" hx-get="@urlToLoadHtml" hx-trigger="load"
+	 hx-swap="innerHTML"></div>
+
+@section scripts 
+{
+	<script src="~/lib/htmx/htmx.js"></script>
+}
